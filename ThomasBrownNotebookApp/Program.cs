@@ -10,6 +10,12 @@ namespace ThomasBrownNotebookApp
     {
         static void Main(string[] args)
         {
+            Notebook notebook = new Notebook();
+            notebook.FillDictionary();
+            notebook["show"]("stuff");
+            notebook["delete"]("the page");
+            notebook["new"]("things");
+            notebook["cenas"]("things");
         }
     }
 }
