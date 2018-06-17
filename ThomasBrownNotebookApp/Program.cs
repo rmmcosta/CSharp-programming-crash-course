@@ -11,11 +11,20 @@ namespace ThomasBrownNotebookApp
         static void Main(string[] args)
         {
             Notebook notebook = new Notebook();
-            notebook.FillDictionary();
-            notebook["show"]("stuff");
+            const string exitKeyword = "EXIT";
+            /*notebook["show"]("stuff");
             notebook["delete"]("the page");
             notebook["new"]("things");
-            notebook["cenas"]("things");
+            notebook["cenas"]("things");*/
+            string[] commands;
+            Console.WriteLine(Notebook.INTROMESSAGE);
+            do
+            {
+                Console.WriteLine("Input commands:");
+                commands = Console.ReadLine().Split(' ');
+                notebook[commands[0]](commands.Length > 1 ? commands[1] : "");
+            } while (commands[0].ToUpper() != exitKeyword.ToUpper());
+            Console.WriteLine(Notebook.OUTROMESSAGE);
         }
     }
 }
