@@ -8,7 +8,7 @@ namespace ThomasBrownNotebookApp
         public const string INTROMESSAGE = "Welcome to the Notebook Application done By RC based on the work of Thomas Brown";
         public const string OUTROMESSAGE = "Goodbye";
 
-        List<IPageable> _pages;
+        List<IPageable> _pages = new List<IPageable>();
 
         public delegate void CommandFunction(string command);
 
@@ -63,14 +63,23 @@ namespace ThomasBrownNotebookApp
             switch (command)
             {
                 case "pages":
-                    Console.WriteLine("showing all pages");
+                    Console.WriteLine("Showing pages...");
+                    for (int i = 0; i < _pages.Count; i++)
+                    {
+                        Console.WriteLine($"Id:{i} {_pages[i].ThePageData.Title}");
+                    }
                     break;
                 default:
                     int idOfPage = 0;
                     if (int.TryParse(command, out idOfPage))
                     {
-                        Console.WriteLine("showing the page {0}", idOfPage);
-                    } else
+                        if (idOfPage < _pages.Count)
+                        {
+                            Console.WriteLine("Showing page {0}...", idOfPage);
+                            _pages[idOfPage].Output();
+                        }
+                    }
+                    else
                     {
                         Console.WriteLine($"show commands:");
                         Console.WriteLine($"{"pages".PadRight(12, ' ')}lists all the created pages");
@@ -85,13 +94,16 @@ namespace ThomasBrownNotebookApp
             switch (command)
             {
                 case "message":
-                    Console.WriteLine("new message");
+                    Console.WriteLine("Creating page...");
+                    _pages.Add(new MessagePage().Input());
                     break;
                 case "list":
-                    Console.WriteLine("new list");
+                    Console.WriteLine("Creating list...");
+                    _pages.Add(new ListMessagePage().Input());
                     break;
                 case "image":
-                    Console.WriteLine("new image");
+                    Console.WriteLine("Creating image...");
+                    _pages.Add(new ImagePage().Input());
                     break;
                 default:
                     Console.WriteLine($"new commands:");
@@ -107,13 +119,18 @@ namespace ThomasBrownNotebookApp
             switch (command)
             {
                 case "all":
-                    Console.WriteLine("deleting all pages");
+                    Console.WriteLine("Deleting pages...");
+                    _pages.Clear();
                     break;
                 default:
                     int idOfPage = 0;
                     if (int.TryParse(command, out idOfPage))
                     {
-                        Console.WriteLine("deleting the page {0}", idOfPage);
+                        if (idOfPage < _pages.Count)
+                        {
+                            Console.WriteLine("Deleting page {0}...", idOfPage);
+                            _pages.RemoveAt(idOfPage);
+                        }
                     }
                     else
                     {

@@ -2,13 +2,13 @@
 {
     struct PageData
     {
-        string Author, Title;
+        public string Author, Title;
     }
 
     interface IPageable
     {
         IPageable Input();
         void Output();
-        PageData MyPageData { get; set; }
+        PageData ThePageData { get; set; }
     }
 }
