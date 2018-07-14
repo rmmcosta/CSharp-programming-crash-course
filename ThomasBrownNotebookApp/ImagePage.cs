@@ -45,7 +45,7 @@ namespace ThomasBrownNotebookApp
 
         public void Output()
         {
-            Console.WriteLine($"\n/{"-".PadRight(15, '-')}Message{"-".PadRight(15, '-')}\\" +
+            Console.WriteLine($"\n/{"-".PadRight(15, '-')}Image{"-".PadRight(15, '-')}\\" +
                 $"\n Title: { _pageData.Title}" +
                 $"\n\n{_asciiImage}\n" +
                 $" designed by {_pageData.Author}\n\n" +
